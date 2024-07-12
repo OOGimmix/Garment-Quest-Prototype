@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://by6koq1rurymm"]
+
+[ext_resource type="Script" path="res://Shibi.cs" id="1_olx10"]
+[ext_resource type="ArrayMesh" uid="uid://dk1n3p6lkp14y" path="res://Assests/Models/ShibiSkin.res" id="2_74oxu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ya2ca"]
+radius = 1.25956
+height = 4.19531
+
+[node name="Shibi" type="CharacterBody3D"]
+script = ExtResource("1_olx10")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_74oxu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998466, 0)
+top_level = true
+shape = SubResource("CapsuleShape3D_ya2ca")

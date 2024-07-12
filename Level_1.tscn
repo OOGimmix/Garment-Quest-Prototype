@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs13782jvnhme"]
+
+[ext_resource type="PackedScene" uid="uid://by6koq1rurymm" path="res://Shibi.tscn" id="1_le6m8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u2iqp"]
+albedo_color = Color(0.862745, 0.501961, 0.760784, 1)
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_wyfsb"]
+material = SubResource("StandardMaterial3D_u2iqp")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ijokx"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hy60r"]
+sky_top_color = Color(1.81484e-06, 0.471455, 0.738052, 1)
+sky_horizon_color = Color(0.661802, 0.743513, 0.887398, 1)
+ground_bottom_color = Color(0.211765, 0.203922, 0.243137, 1)
+
+[sub_resource type="Sky" id="Sky_uw2nm"]
+sky_material = SubResource("ProceduralSkyMaterial_hy60r")
+
+[sub_resource type="Environment" id="Environment_jn16f"]
+background_mode = 2
+sky = SubResource("Sky_uw2nm")
+ambient_light_source = 3
+ambient_light_color = Color(0.999999, 0.999861, 0.873136, 1)
+ambient_light_sky_contribution = 0.17
+ambient_light_energy = 0.84
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4861, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_wyfsb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_ijokx")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.290702, -0.956814, 3.33724e-16, 0.956814, 0.290702, 1, 1.2707e-08, -4.18237e-08, -16.2124, 5.64619, -0.133409)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.456631, -0.770694, 0.444432, -0.12715, 0.550961, 0.824787, -0.880523, 0.320114, -0.34958, 5.08772, 9.56728, 4.27134)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jn16f")
+
+[node name="Shibi" parent="." instance=ExtResource("1_le6m8")]
+transform = Transform3D(0.964741, 0, -0.2632, 0, 1, 0, 0.2632, 0, 0.964741, 0, 0, 0)
+
+[node name="Node" type="Node" parent="."]
